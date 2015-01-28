@@ -18,12 +18,11 @@ Plugin uses light-weight Lytebox js-project by Markus F. Hay (http://lytebox.com
 After activate, plugin will make modal-window-openable every link with href="...image" found in post (or page, or custom post) content.
 
 To prevent links to be treated by plugin put "?" symbol on its end.<br>
-`<a href="image.jpg">...`   opens in modal window<br>
-`<a href="image.jpg?">...`  standard behaviour<br>
-You can put name of picture to show in modal window in "title" attribute<br>
-a href="image.jpg" title="Picture name"<br>
-You can put description of picture to show in modal window in "data-description" attribute<br>
-a href="image.jpg" title="Picture name" data-description="This picture is..."
+`<a href="image.jpg">...</a> - opens in modal window
+<a href="image.jpg?">...</a> - standard behaviour'
+You can put name of picture to show in modal window in "title" attribute. And description - in "data-description" attribute<br>
+`<a href="image.jpg" title="Picture name">...</a>
+<a href="image.jpg" title="Picture name" data-description="This picture is...">...</a>`
 
 ++++++
 
@@ -41,6 +40,7 @@ a href="image.jpg" title="Картинка 1"<br>
 a href="image.jpg" title="Картинка 1" data-description="На этой картинке изображено..."
 
 == Installation ==
+
 <ul>
 <li>Install plugin either via your wp-admin plugins page, or by uploading the files to your server.</li>
 <li>Activate the plugin. It has not any options, just works.</li>
