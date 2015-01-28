@@ -17,10 +17,10 @@ Plugin uses light-weight Lytebox js-project by Markus F. Hay (http://lytebox.com
 
 After activate, plugin will make modal-window-openable every link with href="...image" found in post (or page, or custom post) content.
 
-To prevent links to be treated by plugin put "?" symbol on its end.<br>
+To prevent link to be treated by plugin put "?" symbol on its end:
 `<a href="image.jpg">...</a> - opens in modal window
 <a href="image.jpg?">...</a> - standard behaviour`
-You can put name of picture to show in modal window in "title" attribute. And description - in "data-description" attribute<br>
+You can show name and description of picture in modal window. Just put them into "title" and "data-description" attributes:
 `<a href="image.jpg" title="Picture name">...</a>
 <a href="image.jpg" title="Picture name" data-description="This picture is...">...</a>`
 
