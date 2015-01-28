@@ -19,7 +19,7 @@ After activate, plugin will make modal-window-openable every link with href="...
 
 To prevent links to be treated by plugin put "?" symbol on its end.<br>
 `<a href="image.jpg">...</a> - opens in modal window
-<a href="image.jpg?">...</a> - standard behaviour'
+<a href="image.jpg?">...</a> - standard behaviour`
 You can put name of picture to show in modal window in "title" attribute. And description - in "data-description" attribute<br>
 `<a href="image.jpg" title="Picture name">...</a>
 <a href="image.jpg" title="Picture name" data-description="This picture is...">...</a>`
