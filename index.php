@@ -3,7 +3,7 @@
 Plugin Name: PWP-Lytebox
 Plugin URI: http://p-api-shop.ru
 Description: 
-Version: 1.0.1
+Version: 1.0.3
 Author: Polkan
 Author URI: http://p-api-shop.ru
 License: GPL2
