@@ -56,6 +56,7 @@ a href="image.jpg" title="Картинка 1" data-description="На этой к
 
 =1.1.0=
 * Add settings page. Add setting to disable autogroup images.
+* Add localisation support. Translate to Russian.
 
 =1.0.5=
 * PWP Lytebox 

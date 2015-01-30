@@ -141,10 +141,10 @@ class PWP_Lytebox {
     public function pwpl_autogroup_cb(){
 		?>
 		<p><input name="pwpl_autogroup" type="checkbox" value="1" <?php if ( $this->settings['autogroup'] ) echo 'checked="checked"'; ?> /><?php _e('Auto add all found images to a group', 'pwpl'); ?></p>
-        <p><i>When disabled every opening picture will not have "next" and "prev" buttons to see other pictures from the page. To group some images you will have to use a <b>data-lyte-options="group:GROUP-NAME-HERE"</b> attribute in groupped images' &lt;a&gt; tags.</i></p>
+        <p><i><?php _e('When disabled, all opening pictures will not have "next" and "prev" buttons to see other images from the page, until you manually add <b>data-lyte-options="group:GROUP-NAME-HERE"</b> attribute in &lt;a&gt; tags of images you want to be groupped.', 'pwpl'); ?></i></p>
 		<?php
     }
-    public function sanitize_autogroup_cb( $option ) {
+    public function sanitize_autogroup( $option ) {
         if ( $option ) return 1;
         return 0;
     }
