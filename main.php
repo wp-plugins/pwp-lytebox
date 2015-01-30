@@ -7,18 +7,45 @@ if ( !defined( 'ABSPATH' ) )
  * Main class that holds the entire plugin
  */
 class PWP_Lytebox {
+
+    // public settings (are setted by site admin) 
+    public $settings = array();     
+    
     /*
      * Constructor 
      * Sets up all the appropriate hooks and actions
      */
     function __construct() {
+        // is auto add all found pictures to the group (group has forvard/backvard buttons)
+        $this->settings = array( 'autogroup' => get_option( 'pwpl_autogroup', '1' ) );
+
+        // Localize plugin
+        add_action( 'init', array($this, 'localization_setup') );
+                
         // Loads scripts and styles
         add_action( 'wp_enqueue_scripts', array($this, 'enqueue_scripts') );
         //add_action( 'admin_enqueue_scripts', array($this, 'enqueue_admin_scripts') );
 
+        register_activation_hook( PLUGIN_MAIN_FILE, array($this, 'on_activate') );
+        register_deactivation_hook( PLUGIN_MAIN_FILE, array($this, 'on_deactivate') );
+
+        // Settings
+        add_action( 'admin_menu', array( $this, 'options_page'   ) );
+        add_action( 'admin_init', array( $this, 'settings'       ) );
+        // Add settings link on plugins list
+        add_filter( 'plugin_action_links', array( $this, 'settings_link' ), 10, 2 );
+
         // add lydebox data to anchors
         add_filter('the_content', array($this, 'add_lytebox_data') );
     }
+
+    /*
+     * Initialize plugin for localization
+     */
+    public function localization_setup() {
+        load_plugin_textdomain( 'pwpl', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    }
+    
     /*
      * Enqueue scripts and styles
      */
@@ -29,7 +56,116 @@ class PWP_Lytebox {
         wp_enqueue_script( 'pwp-scripts',         plugins_url( 'scripts.js', __FILE__ ),  array('jquery'), date('Y-m'), true );
         wp_enqueue_script( 'pwp-lytebox-scripts', plugins_url( 'lytebox/lytebox.js', __FILE__ ),  array('jquery'), date('Y-m'), true );
     }
-    
+
+    /*
+     * Activation function
+     */
+    public function on_activate() {
+        // make plugin options
+		$options = array(
+			'pwpl_autogroup' => get_option( 'pwpl_autogroup', 1 ),
+		);
+		foreach ( $options as $key => $value ) {
+			update_option( $key, $value );
+		}
+    }
+
+    /*
+     * Deactivation function
+     */
+    public function on_deactivate() {
+    }
+
+
+
+	/***********************************************************
+     *
+     * OPTIONS
+     *
+     **********************************************************/
+    /*
+	 * Options page
+	 */
+	public function options_page() {
+		add_options_page(
+			"Polkan's WP Lytebox Settings",         // title
+			'PWP-Lytebox',                          // menu
+			'manage_options',                       // capability
+			'pwpl',                                 // menu slug
+			array( $this, 'options_page_content' )  // content
+		);
+	}
+	/*
+	 * Options page content
+	 */
+	public function options_page_content() {
+		?>
+		<div class="wrap">
+			<h2>PWP Lytebox Settings</h2>
+			<form action="options.php" method="POST" id="pwpl-options-form">
+				<?php
+					settings_fields( 'pwpl' );        // pwpl - 'name' of my settings page
+					do_settings_sections( 'pwpl' );
+					submit_button();
+				?>
+			</form>
+		</div>
+		<?php
+	}
+
+	/*
+	 * Register settings and settings sections
+	 */
+	public function settings() {
+		// Add settings section named 'pwpl_options' to settings page 'pwpl'
+		add_settings_section( 'pwpl_options', 
+                              __('Main settings','pwpl'), 
+                              '', 
+                              'pwpl' );
+		// Settings
+		$sets = array(
+			'pwpl_autogroup' => array(
+				'label'    => __( "Autogroup", 'pwpl' ),
+				'callback' => 'pwpl_autogroup_cb',
+			),
+		);
+		foreach ( $sets as $id => $settings ) {
+            // add settings fields to settings section 'pwpl_options' on settings page 'pwpl'
+			add_settings_field( $id, $settings['label'], array( $this, $settings['callback'] ), 'pwpl', 'pwpl_options' );
+
+			// set sanitize callback functions to check user's input for settings fields
+			$sanitize_callback = str_replace( 'pwpl', 'sanitize', $id );
+			register_setting( 'pwpl', $id, array( $this, $sanitize_callback ) );
+		};
+    }
+    public function pwpl_autogroup_cb(){
+		?>
+		<p><input name="pwpl_autogroup" type="checkbox" value="1" <?php if ( $this->settings['autogroup'] ) echo 'checked="checked"'; ?> /><?php _e('Auto add all found images to a group', 'pwpl'); ?></p>
+        <p><i>When disabled every opening picture will not have "next" and "prev" buttons to see other pictures from the page. To group some images you will have to use a <b>data-lyte-options="group:GROUP-NAME-HERE"</b> attribute in groupped images' &lt;a&gt; tags.</i></p>
+		<?php
+    }
+    public function sanitize_autogroup_cb( $option ) {
+        if ( $option ) return 1;
+        return 0;
+    }
+
+
+    /*
+     * Add settings link to plugins list page
+     */
+    public function settings_link( $links, $file ) {
+        if ( $file == PWPL_MAIN_FILE ) {
+            array_unshift( $links, sprintf( '<a href="%s">%s</a>',
+                                            admin_url( 'options-general.php?page=pwpl' ),
+                                            __( 'Settings', 'pwpl' )
+            ) );
+        }
+        return $links;
+    }
+    /******************
+     *  END OPTIONS
+     ******************/
+
     /*
      * Add lytebox data to links
      */ 
@@ -63,8 +199,10 @@ class PWP_Lytebox {
                     $open_a = str_replace('<a', '<a class="lytebox"', $open_a);
                 }
 
-                // make all pictures-links groupped
-                $open_a = str_replace('<a', '<a data-lyte-options="group:pageimages"', $open_a);
+                // auto make all pictures-links groupped
+                if ($this->settings['autogroup']){
+                    $open_a = str_replace('<a', '<a data-lyte-options="group:pageimages"', $open_a);
+                }
 
                 $replacement = $open_a.$anchor.$close_a;
                 $content = str_replace ( $full_match, $replacement, $content );

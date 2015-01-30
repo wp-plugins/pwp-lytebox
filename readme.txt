@@ -24,6 +24,8 @@ You can show name and description of picture in modal window. Just put them into
 `<a href="image.jpg" title="Picture name">...</a>
 <a href="image.jpg" title="Picture name" data-description="This picture is...">...</a>`
 
+You can disable autogroup all images via settings. Thus you can manually group images from one page to a several groups.
+
 ++++++
 
 Плагин может использоваться на любом Wordpress-сайте.
@@ -39,13 +41,21 @@ a href="image.jpg" title="Картинка 1"<br>
 Можно задать более подробное описание изображения, используя параметр data-description<br>
 a href="image.jpg" title="Картинка 1" data-description="На этой картинке изображено..."
 
+В настройках можно отключить автогруппировку изображений. Тогда в окне не будет кнопок перехода к другим картинкам. Создать группы можно будет вручную.
+
 == Installation ==
 
-<ul>
-<li>Install plugin either via your wp-admin plugins page, or by uploading the files to your server.</li>
-<li>Activate the plugin. It has not any options, just works.</li>
-</ul>
+1. Install plugin either via your wp-admin plugins page, or by uploading the files to your server.
+2. Activate the plugin.
 
 == Screenshots ==
 
 1. Modal window with image
+
+== Changelog ==
+
+=1.1.0=
+* Add settings page. Add setting to disable autogroup images.
+
+=1.0.5=
+* PWP Lytebox 
