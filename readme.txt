@@ -24,7 +24,9 @@ You can show name and description of picture in modal window. Just put them into
 `<a href="image.jpg" title="Picture name">...</a>
 <a href="image.jpg" title="Picture name" data-description="This picture is...">...</a>`
 
-You can disable autogroup all images via settings. Thus you can manually group images from one page to a several groups.
+= settings = 
+* select color scheme
+* disable autogroup images *(Thus you can manually group images from one page to a several groups)*
 
 ++++++
 
@@ -37,7 +39,7 @@ You can disable autogroup all images via settings. Thus you can manually group i
 `<a href="image.jpg" title="Картинка 1">...</a>
 <a href="image.jpg" title="Картинка 1" data-description="На этой картинке изображено...">...</a>`
 
-В настройках можно отключить автогруппировку изображений. Тогда в окне не будет кнопок перехода к другим картинкам. Создать группы можно будет вручную.
+В настройках можно выбрать цветовую схему, а также отключить автогруппировку изображений (создавать группы для перехода по картинкам можно будет вручную).
 
 == Installation ==
 
