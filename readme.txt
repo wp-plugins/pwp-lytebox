@@ -11,8 +11,6 @@ The fast and simple way to make all links pointing to images open in popup modal
 
 == Description ==
 
-The fast and simple way to make all links pointing to images open in popup modal window.
-
 Plugin uses light-weight Lytebox js-project by Markus F. Hay (http://lytebox.com, Creative Commons Attribution 3.0 License).
 
 After activate, plugin will make modal-window-openable every link with href="...image" found in post (or page, or custom post) content.
@@ -24,11 +22,11 @@ You can show name and description of picture in modal window. Just put them into
 `<a href="image.jpg" title="Picture name">...</a>
 <a href="image.jpg" title="Picture name" data-description="This picture is...">...</a>`
 
-= settings = 
+Settings: 
 * select color scheme
 * disable autogroup images *(Thus you can manually group images from one page to a several groups)*
 
-++++++
++++++++++++++++++++++
 
 Находит в контенте все ссылки, которые ведут на изображения и делает их открывающимися в модальном окне
 
