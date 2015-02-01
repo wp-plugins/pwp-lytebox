@@ -23,12 +23,12 @@ function Lytebox(bInitialize, aHttp) {
 		
 	
 	/*** Configure Lytebox ***/
-	
-		this.theme   			= (typeof lyteboxTheme !== 'undefined') && /^(black|grey|red|green|blue|gold|orange)$/i.test(lyteboxTheme) ? lyteboxTheme : 'black'; // themes: black (default), grey, red, green, blue, gold, orange
+	    // themes: black (default), grey, red, green, blue, gold, orange
+		this.theme   			= (typeof lyteboxTheme !== 'undefined') && /^(black|grey|red|green|blue|gold|orange)$/i.test(lyteboxTheme) ? lyteboxTheme : pwpl.colortheme; 
 		this.roundedBorder		= true; 		// controls whether or not the viewer uses rounded corners (false = square corners)
 		this.innerBorder		= true;			// controls whether to show the inner border around image/html content
 		this.outerBorder		= true;			// controls whether to show the outer grey (or theme) border
-		this.resizeSpeed		= 5;			// controls the speed of the image resizing (1=slowest and 10=fastest)
+		this.resizeSpeed		= 8;			// controls the speed of the image resizing (1=slowest and 10=fastest)
 		this.maxOpacity			= 80;			// higher opacity = darker overlay, lower opacity = lighter overlay
 		this.borderSize			= 12;			// if you adjust the padding in the CSS, you will need to update this variable -- otherwise, leave this alone...
 		this.appendQS			= false;		// if true, will append request_from=lytebox to the QS. Use this with caution as it may cause pages to not render

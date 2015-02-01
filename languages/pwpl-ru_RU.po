@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pwpl\n"
-"POT-Creation-Date: 2015-01-30 16:56+0300\n"
-"PO-Revision-Date: 2015-01-30 16:56+0300\n"
+"POT-Creation-Date: 2015-02-01 02:25+0300\n"
+"PO-Revision-Date: 2015-02-01 02:27+0300\n"
 "Last-Translator: Polkan <pwpcode@gmail.com>\n"
 "Language-Team: \n"
 "Language: Russian\n"
@@ -16,19 +16,55 @@ msgstr ""
 "X-Poedit-SearchPath-0: /var/www/api-shop_test/public_html/wp-content/plugins/"
 "pwp-lytebox\n"
 
-#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:122
+#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:28
+msgid "Black"
+msgstr "Черная"
+
+#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:29
+msgid "Gray"
+msgstr "Светлая"
+
+#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:30
+msgid "Red"
+msgstr "Красная"
+
+#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:31
+msgid "Green"
+msgstr "Зеленая"
+
+#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:32
+msgid "Blue"
+msgstr "Синяя"
+
+#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:33
+msgid "Gold"
+msgstr "Желтая"
+
+#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:34
+msgid "Orange"
+msgstr "Оранжевая"
+
+#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:143
 msgid "Main settings"
 msgstr "Основные"
 
-#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:128
+#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:149
+msgid "Theme"
+msgstr "Тема"
+
+#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:153
 msgid "Autogroup"
 msgstr "Автогруппировка"
 
-#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:143
+#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:172
+msgid "Color scheme of modal window"
+msgstr "Цветовая схема модального окна"
+
+#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:183
 msgid "Auto add all found images to a group"
 msgstr "Автоматически собирать все ссылки страницы в группу"
 
-#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:144
+#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:184
 msgid ""
 "When disabled, all opening pictures will not have \"next\" and \"prev\" "
 "buttons to see other images from the page, until you manually add <b>data-"
@@ -41,7 +77,7 @@ msgstr ""
 "\"</b>. Таким образом на одной странице можно создать несколько независимых "
 "групп."
 
-#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:160
+#: /var/www/api-shop_test/public_html/wp-content/plugins/pwp-lytebox/main.php:200
 msgid "Settings"
 msgstr "Настройки"
 

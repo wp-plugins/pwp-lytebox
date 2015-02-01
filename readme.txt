@@ -50,6 +50,9 @@ You can disable autogroup all images via settings. Thus you can manually group i
 
 == Changelog ==
 
+= 1.2.0 =
+* Add setting to select color scheme
+
 = 1.1.0 =
 * Add settings page. Add setting to disable autogroup images.
 * Add localisation support. Translate to Russian.

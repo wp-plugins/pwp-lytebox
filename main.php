@@ -9,7 +9,9 @@ if ( !defined( 'ABSPATH' ) )
 class PWP_Lytebox {
 
     // public settings (are setted by site admin) 
-    public $settings = array();     
+    public $settings = array();
+    // color themes available in plugin
+    private $colors = array();     
     
     /*
      * Constructor 
@@ -17,7 +19,10 @@ class PWP_Lytebox {
      */
     function __construct() {
         // is auto add all found pictures to the group (group has forvard/backvard buttons)
-        $this->settings = array( 'autogroup' => get_option( 'pwpl_autogroup', '1' ) );
+        $this->settings = array(
+            'autogroup'  => get_option( 'pwpl_autogroup', '1' ),
+            'colortheme' => get_option( 'pwpl_colortheme', 'black' ),
+            );
 
         // Localize plugin
         add_action( 'init', array($this, 'localization_setup') );
@@ -44,6 +49,17 @@ class PWP_Lytebox {
      */
     public function localization_setup() {
         load_plugin_textdomain( 'pwpl', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+
+        // place it here to localise values
+        $this->colors = array ( 
+            'black' => __('Black' ,'pwpl'), 
+            'grey'  => __('Gray'  ,'pwpl'), 
+            'red'   => __('Red'   ,'pwpl'), 
+            'green' => __('Green' ,'pwpl'), 
+            'blue'  => __('Blue'  ,'pwpl'), 
+            'gold'  => __('Gold'  ,'pwpl'), 
+            'orange'=> __('Orange','pwpl'),
+            );
     }
     
     /*
@@ -51,10 +67,15 @@ class PWP_Lytebox {
      */
     public function enqueue_scripts() {
         // styles
-        wp_enqueue_style( 'pwp-lytebox-styles',   plugins_url( 'lytebox/lytebox.css', __FILE__ ), array(), date('Y-m') );
+        wp_enqueue_style( 'pwpl-styles',   plugins_url( 'lytebox/lytebox.css', __FILE__ ), array(), date('Y-m-d') );
         // scripts
-        wp_enqueue_script( 'pwp-scripts',         plugins_url( 'scripts.js', __FILE__ ),  array('jquery'), date('Y-m'), true );
-        wp_enqueue_script( 'pwp-lytebox-scripts', plugins_url( 'lytebox/lytebox.js', __FILE__ ),  array('jquery'), date('Y-m'), true );
+        wp_enqueue_script( 'pwpl-scripts',         plugins_url( 'scripts.js', __FILE__ ),  array('jquery'), date('Y-m-d'), true );
+        wp_enqueue_script( 'pwpl-lytebox-scripts', plugins_url( 'lytebox/lytebox.js', __FILE__ ),  array('jquery'), date('Y-m-d'), true );
+
+        // Localize and vars for javascripts
+        wp_localize_script( 'pwpl-lytebox-scripts', 'pwpl', array(
+            'colortheme' => $this->settings['colortheme'],
+        ) );
     }
 
     /*
@@ -64,6 +85,7 @@ class PWP_Lytebox {
         // make plugin options
 		$options = array(
 			'pwpl_autogroup' => get_option( 'pwpl_autogroup', 1 ),
+			'pwpl_colortheme' => get_option( 'pwpl_colortheme', 'black' ),
 		);
 		foreach ( $options as $key => $value ) {
 			update_option( $key, $value );
@@ -124,6 +146,10 @@ class PWP_Lytebox {
                               'pwpl' );
 		// Settings
 		$sets = array(
+			'pwpl_colortheme' => array(
+				'label'    => __( "Theme", 'pwpl' ),
+				'callback' => 'pwpl_colortheme_cb',
+			),
 			'pwpl_autogroup' => array(
 				'label'    => __( "Autogroup", 'pwpl' ),
 				'callback' => 'pwpl_autogroup_cb',
@@ -138,6 +164,21 @@ class PWP_Lytebox {
 			register_setting( 'pwpl', $id, array( $this, $sanitize_callback ) );
 		};
     }
+    public function pwpl_colortheme_cb(){
+        ?>
+        <p><select name="pwpl_colortheme">
+        <?php foreach ($this->colors as $color_id=>$color_name ) {
+            echo '<option '.($color_id==$this->settings['colortheme']?'selected':'').' value="'.$color_id.'">'.$color_name.'</option>';
+        } ?>
+        </select><span style="padding-left:20px;"><i><?php _e('Color scheme of modal window','pwpl'); ?></i></span></p>
+        <?php
+    }
+    public function sanitize_colortheme( $option ) {
+        $valid_colors = array_keys($this->colors);
+        if ( in_array($option, $valid_colors) ) return $option;
+        return 'black';
+    }
+
     public function pwpl_autogroup_cb(){
 		?>
 		<p><label><input name="pwpl_autogroup" type="checkbox" value="1" <?php if ( $this->settings['autogroup'] ) echo 'checked="checked"'; ?> /><?php _e('Auto add all found images to a group', 'pwpl'); ?></label></p>
