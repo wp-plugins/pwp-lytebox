@@ -23,6 +23,7 @@ You can show name and description of picture in modal window. Just put them into
 <a href="image.jpg" title="Picture name" data-description="This picture is...">...</a>`
 
 Settings: 
+
 * select color scheme
 * disable autogroup images *(Thus you can manually group images from one page to a several groups)*
 
