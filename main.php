@@ -31,8 +31,8 @@ class PWP_Lytebox {
         add_action( 'wp_enqueue_scripts', array($this, 'enqueue_scripts') );
         //add_action( 'admin_enqueue_scripts', array($this, 'enqueue_admin_scripts') );
 
-        register_activation_hook( PLUGIN_MAIN_FILE, array($this, 'on_activate') );
-        register_deactivation_hook( PLUGIN_MAIN_FILE, array($this, 'on_deactivate') );
+        register_activation_hook( PWPL_MAIN_FILE, array($this, 'on_activate') );
+        register_deactivation_hook( PWPL_MAIN_FILE, array($this, 'on_deactivate') );
 
         // Settings
         add_action( 'admin_menu', array( $this, 'options_page'   ) );

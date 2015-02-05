@@ -51,6 +51,9 @@ Settings:
 
 == Changelog ==
 
+= 1.2.1 =
+* Fix activation function
+
 = 1.2.0 =
 * Add setting to select color scheme
 
