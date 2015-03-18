@@ -216,7 +216,7 @@ class PWP_Lytebox {
         /*$content = preg_replace('|<a((?:(?!class).)+?><img.*?<\/a>)|is', '<a class="lytebox" data-lyte-options="group:pageimages"'.'$1', $content);
 */
         $out = array();
-        preg_match_all('|(<a.*?>)(.+?)(</a>)|is', $content, $out, PREG_SET_ORDER);
+        preg_match_all('|(<a.*?>)(.+?)(</a>)|i', $content, $out, PREG_SET_ORDER);
 
         if ( !count($out) ) return $content; 
 
