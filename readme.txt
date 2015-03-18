@@ -51,6 +51,9 @@ Settings:
 
 == Changelog ==
 
+= 1.2.3 =
+* Fix regular expression
+
 = 1.2.1 =
 * Fix activation function
 

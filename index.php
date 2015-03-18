@@ -3,7 +3,7 @@
 Plugin Name: PWP-Lytebox
 Plugin URI: http://p-api-shop.ru
 Description: The fast and simple way to make all links pointing to images open in popup modal window. 
-Version: 1.2.2
+Version: 1.2.3
 Author: Polkan
 Author URI: http://p-api-shop.ru
 License: GPL2 or later
